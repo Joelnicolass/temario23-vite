@@ -1,11 +1,17 @@
 import React from "react";
 
-const Saludo = ({ nombre }) => {
-  return (
-    <div>
-      <h1>hola {nombre}</h1>
-    </div>
-  );
+/* 
+    const props = {
+        name: 'Fernanda'
+    }
+
+    const {name} = props
+
+    props.name
+*/
+
+const Saludo = ({ name }) => {
+  return <div>Hola {name}</div>;
 };
 
 export default Saludo;
