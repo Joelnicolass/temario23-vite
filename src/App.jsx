@@ -4,11 +4,12 @@ import EstadosRepaso from "./estados/EstadosRepaso";
 import Contenedor from "./props/Contenedor";
 import ChildrenContenedor from "./children/ChildrenContenedor";
 import UserView from "./mapeo/UserView";
+import GameView from "./piedra-papel-tijera/GameView";
 
 const App = () => {
   return (
     <>
-      <UserView />
+      <GameView />
     </>
   );
 };

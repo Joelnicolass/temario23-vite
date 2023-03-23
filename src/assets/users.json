@@ -1,0 +1,64 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "nombre": "Ana",
+      "apellido": "García",
+      "profesion": "Ingeniera"
+    },
+    {
+      "id": 2,
+      "nombre": "Luis",
+      "apellido": "Hernández",
+      "profesion": "Médico"
+    },
+    {
+      "id": 3,
+      "nombre": "María",
+      "apellido": "Martínez",
+      "profesion": "Abogada"
+    },
+    {
+      "id": 4,
+      "nombre": "José",
+      "apellido": "López",
+      "profesion": "Arquitecto"
+    },
+    {
+      "id": 5,
+      "nombre": "Sofía",
+      "apellido": "Pérez",
+      "profesion": "Diseñadora"
+    },
+    {
+      "id": 6,
+      "nombre": "Carlos",
+      "apellido": "González",
+      "profesion": "Contador"
+    },
+    {
+      "id": 7,
+      "nombre": "Paola",
+      "apellido": "Ruíz",
+      "profesion": "Enfermera"
+    },
+    {
+      "id": 8,
+      "nombre": "Diego",
+      "apellido": "Sánchez",
+      "profesion": "Programador"
+    },
+    {
+      "id": 9,
+      "nombre": "Lucía",
+      "apellido": "Gómez",
+      "profesion": "Psicóloga"
+    },
+    {
+      "id": 10,
+      "nombre": "Andrés",
+      "apellido": "Fernández",
+      "profesion": "Chef"
+    }
+  ]
+}

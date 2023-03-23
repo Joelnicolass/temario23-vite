@@ -1,22 +1,28 @@
 import React from "react";
 
-const cardStyle = {
+const styleCard = {
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
-  width: "300px",
-  border: "1px solid white",
-  margin: "10px",
-  padding: "10px",
+  border: "2px solid white",
   borderRadius: "10px",
+  width: "300px",
 };
 
-const Card = ({ user }) => {
+const Card = ({ user, deleteUser }) => {
   return (
-    <div style={cardStyle}>
+    <div style={styleCard}>
       <h1>{user.nombre}</h1>
       <h2>{user.apellido}</h2>
+      <h5>{user.profesion}</h5>
+      <button
+        onClick={() => {
+          deleteUser(user.id);
+        }}
+      >
+        Eliminar
+      </button>
     </div>
   );
 };
