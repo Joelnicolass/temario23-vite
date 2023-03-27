@@ -18,7 +18,49 @@ const getRandomNumberInRange = (min, max) => {
 };
 
 const GameView = () => {
-  return <div></div>;
+  const [eleccion, setEleccion] = useState(null);
+  const [eleccionIA, setEleccionIA] = useState(null);
+  const [resultado, setResultado] = useState(null);
+
+  const handleClick = (eleccion) => {};
+
+  return (
+    <div>
+      <h1>Piedra Papel Tijera</h1>
+
+      <div>
+        <form>
+          <button
+            onClick={() => {
+              handleClick("piedra");
+            }}
+          >
+            🪨
+          </button>
+          <button
+            onClick={() => {
+              handleClick("papel");
+            }}
+          >
+            🧻
+          </button>
+          <button
+            onClick={() => {
+              handleClick("tijera");
+            }}
+          >
+            ✂️
+          </button>
+        </form>
+      </div>
+
+      <div>
+        <h2>Tu eleccion</h2>
+        <h2>IA</h2>
+        <h2>Gana </h2>
+      </div>
+    </div>
+  );
 };
 
 export default GameView;
