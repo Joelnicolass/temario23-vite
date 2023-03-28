@@ -1,20 +1,40 @@
 import React, { useEffect, useState } from "react";
 
+/* 
+
+
+  montaje - 1 vez
+  * useEffect(() => {}, [])
+
+  actualizacion - cada vez que cambia una dependencia
+  * useEffect(() => {}, [deps]) 
+
+  desmontaje 
+  * useEffect(() => { return () => {} }, [])
+
+
+
+*/
+
 const Efectos = () => {
   const [contador, setContador] = useState(0);
 
   useEffect(() => {
-    // peticion a una api
-  }, []); // se ejecuta una sola vez, en la etapa de montaje
-
-  useEffect(() => {}, [contador]); // se ejecuta en la etapa de montaje y cuando cambie la dependencia
+    //console.log("SE EJECUTA CUANDO SE MONTA"); // LLAMADA A API
+  }, []); // SE EJECUTA SOLO LA PRIMERA VEZ - MONTAJE
 
   useEffect(() => {
-    // clean up
+    if (contador === 0) return;
+
+    console.log("CONTADOR CAMBIO");
+  }, [contador]); // SIEMPRE SE EJECUTA CUANDO EL COMPONENTE SE MONTA - CUANDO LA DEPENDENCIA CAMBIA - ACTUALIZACION
+
+  useEffect(() => {
+    //CLEAN UP
     return () => {
-      console.log("desmontaje");
+      //console.log("SE EJECUTA CUANDO SE DESMONTA");
     };
-  }, []); // se ejecuta la primera vez y en la etapa de desmontaje
+  }, []);
 
   return (
     <div>

@@ -22,36 +22,42 @@ const GameView = () => {
   const [eleccionIA, setEleccionIA] = useState(null);
   const [resultado, setResultado] = useState(null);
 
-  const handleClick = (eleccion) => {};
+  const handleClick = (eleccion) => {
+    console.log(eleccion);
+
+    // que juegue la IA
+
+    // comparar eleccion con eleccionIA
+
+    // guardar el resultado
+  };
 
   return (
     <div>
       <h1>Piedra Papel Tijera</h1>
 
       <div>
-        <form>
-          <button
-            onClick={() => {
-              handleClick("piedra");
-            }}
-          >
-            🪨
-          </button>
-          <button
-            onClick={() => {
-              handleClick("papel");
-            }}
-          >
-            🧻
-          </button>
-          <button
-            onClick={() => {
-              handleClick("tijera");
-            }}
-          >
-            ✂️
-          </button>
-        </form>
+        <button
+          onClick={() => {
+            handleClick("piedra");
+          }}
+        >
+          🪨
+        </button>
+        <button
+          onClick={() => {
+            handleClick("papel");
+          }}
+        >
+          🧻
+        </button>
+        <button
+          onClick={() => {
+            handleClick("tijera");
+          }}
+        >
+          ✂️
+        </button>
       </div>
 
       <div>
