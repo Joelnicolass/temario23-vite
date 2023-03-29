@@ -25,28 +25,51 @@ const amarillo = colores.find((color) => {
 }); // DEVUELVE EL PRIMER ELEMENTO QUE CUMPLE LA CONDICION, NO GENERA UN ARRAY
 
 const diferentesDeAmarillo = colores.filter((color) => {
-  return color === "🟡";
+  return color !== "🟡";
 }); // DEVUELVE UN ARRAY CON TODOS LOS ELEMENTOS QUE CUMPLEN LA CONDICION
 
 // -----------------------------------------------------
 
-const obtenerUsuarioPorNombre = (nombre) => {
+const obtenerAJuan = () => {
   const usuario = usuarios.find((usuario) => {
-    return usuario.nombre === nombre;
+    return usuario.nombre === "Juan";
   });
+
   const draft = structuredClone(usuario);
   return draft;
+
+  /* 
+    return {
+      ...usuario,
+    }
+  */
 };
+/* 
+const juan = obtenerAJuan();
+juan.nombre = "MODIFICADO";
 
-const juan = obtenerUsuarioPorNombre("Juan");
-
-// LOS OBJETOS EN JS SE PASAN POR REFERENCIA
-//console.table(usuarios[0]);
 console.table(juan);
+console.table(usuarios[0]); */
 
 //------------------------
 
-let estado = structuredClone(usuarios);
+let estado = [
+  {
+    id: 1,
+    nombre: "Juan",
+    apellido: "Perez",
+  },
+  {
+    id: 2,
+    nombre: "Maria",
+    apellido: "Gomez",
+  },
+  {
+    id: 3,
+    nombre: "Pedro",
+    apellido: "Gomez",
+  },
+];
 
 const obetenerUsuarioPorApellido = (apellido) => {
   const usuario = estado.find((usuario) => {

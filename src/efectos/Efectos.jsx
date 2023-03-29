@@ -20,21 +20,20 @@ const Efectos = () => {
   const [contador, setContador] = useState(0);
 
   useEffect(() => {
-    //console.log("SE EJECUTA CUANDO SE MONTA"); // LLAMADA A API
-  }, []); // SE EJECUTA SOLO LA PRIMERA VEZ - MONTAJE
+    console.log("Montaje");
+  }, []); // SE EJECUTA UNA VEZ - MONTAJE
 
   useEffect(() => {
     if (contador === 0) return;
-
-    console.log("CONTADOR CAMBIO");
-  }, [contador]); // SIEMPRE SE EJECUTA CUANDO EL COMPONENTE SE MONTA - CUANDO LA DEPENDENCIA CAMBIA - ACTUALIZACION
+    console.log("Actualizacion");
+  }, [contador]); // SIEMPRE SE EJECUTA LA PRIEMRA VEZ - SE EJECUTA CUANDO CAMBIA EL CONTADOR
 
   useEffect(() => {
-    //CLEAN UP
+    // CLEAN UP
     return () => {
-      //console.log("SE EJECUTA CUANDO SE DESMONTA");
+      console.log("Desmontaje");
     };
-  }, []);
+  }, []); // SE EJECUTA CUANDO EL COMPONENTE SE DESMONTA
 
   return (
     <div>
