@@ -1,10 +1,10 @@
 import React from "react";
-import Promesas from "./Promesas/Promesas";
+import GameView from "./piedra-papel-tijera/GameView";
 
 const App = () => {
   return (
     <>
-      <Promesas />
+      <GameView />
     </>
   );
 };

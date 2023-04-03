@@ -18,52 +18,86 @@ const getRandomNumberInRange = (min, max) => {
 };
 
 const GameView = () => {
-  const [eleccion, setEleccion] = useState(null);
-  const [eleccionIA, setEleccionIA] = useState(null);
-  const [resultado, setResultado] = useState(null);
+  const [selectionPlayerState, setSelectionPlayerState] = useState(null);
+  const [selectionIAState, setSelectionIAState] = useState(null);
+  const [resultState, setResultState] = useState(null);
 
-  const handleClick = (eleccion) => {
-    console.log(eleccion);
+  const SELECTIONS = {
+    PIEDRA: "PIEDRA",
+    PAPEL: "PAPEL",
+    TIJERA: "TIJERA",
+  };
 
-    // que juegue la IA
+  const CONDITIONS_WIN = {
+    [SELECTIONS.PIEDRA]: SELECTIONS.TIJERA,
+    [SELECTIONS.PAPEL]: SELECTIONS.PIEDRA,
+    [SELECTIONS.TIJERA]: SELECTIONS.PAPEL,
+  };
 
-    // comparar eleccion con eleccionIA
+  const RESULTS = {
+    WIN: "GANASTE",
+    LOSE: "PERDISTE",
+    DRAW: "EMPATE",
+  };
 
-    // guardar el resultado
+  const evaluateWinner = (selectionPlayer, selectionIA) => {
+    if (selectionPlayer === selectionIA) return RESULTS.DRAW;
+    if (CONDITIONS_WIN[selectionPlayer] === selectionIA) return RESULTS.WIN;
+
+    return RESULTS.LOSE;
+  };
+
+  const getSelectionIA = () => {
+    const selections = Object.values(SELECTIONS);
+    return getRandomElementFromArray(selections);
+  };
+
+  const play = (selectionPlayer) => {
+    const selectionIA = getSelectionIA();
+    const result = evaluateWinner(selectionPlayer, selectionIA);
+
+    setSelectionPlayerState(selectionPlayer);
+    setSelectionIAState(selectionIA);
+    setResultState(result);
   };
 
   return (
     <div>
-      <h1>Piedra Papel Tijera</h1>
+      <div>
+        <h1>Titulo</h1>
+      </div>
+
+      <div>
+        <h3>
+          Tu: {selectionPlayerState} vs IA: {selectionIAState}{" "}
+        </h3>
+      </div>
+      <div>
+        <h3>{resultState}</h3>
+      </div>
 
       <div>
         <button
-          onClick={() => {
-            handleClick("piedra");
+          onClick={(e) => {
+            play(SELECTIONS.PIEDRA);
           }}
         >
           🪨
         </button>
         <button
-          onClick={() => {
-            handleClick("papel");
+          onClick={(e) => {
+            play(SELECTIONS.PAPEL);
           }}
         >
           🧻
         </button>
         <button
-          onClick={() => {
-            handleClick("tijera");
+          onClick={(e) => {
+            play(SELECTIONS.TIJERA);
           }}
         >
           ✂️
         </button>
-      </div>
-
-      <div>
-        <h2>Tu eleccion</h2>
-        <h2>IA</h2>
-        <h2>Gana </h2>
       </div>
     </div>
   );
