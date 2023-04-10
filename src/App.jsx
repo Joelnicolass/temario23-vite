@@ -1,10 +1,11 @@
 import React from "react";
-import GameView from "./piedra-papel-tijera/GameView";
+import Formularios from "./formularios/Formularios";
+import FormulariosNoControlados from "./formularios/FormulariosNoControlados";
 
 const App = () => {
   return (
     <>
-      <GameView />
+      <FormulariosNoControlados />
     </>
   );
 };
