@@ -1,20 +1,14 @@
-import React from "react";
+import React, { useRef } from "react";
 
-// useRef
-
-export const getFormFields = (e) => {
-  const fields = Object.fromEntries(new window.FormData(e.target));
-
-  return fields;
-};
+const getFormFields = (e) => Object.fromEntries(new window.FormData(e.target));
 
 const FormulariosNoControlados = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const { email, password } = getFormFields(e);
+    const { nombre, apellido } = getFormFields(e);
 
-    console.log(email, password);
+    // nombre tiene mas de 10 caracteres
   };
 
   return (
@@ -26,11 +20,10 @@ const FormulariosNoControlados = () => {
           flexDirection: "column",
         }}
       >
-        <input type="email" name="email" />
+        <input type="text" name="nombre" />
+        <input type="text" name="apellido" />
 
-        <input type="password" name="password" />
-
-        <input type="submit" />
+        <input type="submit" value="Iniciar Sesion" />
       </form>
     </div>
   );

@@ -1,13 +1,11 @@
 import React from "react";
-import Formularios from "./formularios/Formularios";
-import FormulariosNoControlados from "./formularios/FormulariosNoControlados";
+import Referencias from "./referencias/Referencias";
+import Routes from "./rutas/Routes";
+import ReferenciaDeElementos from "./referencias/ReferenciaDeElementos";
+import Ejemplo from "./referencias/Ejemplo";
 
 const App = () => {
-  return (
-    <>
-      <FormulariosNoControlados />
-    </>
-  );
+  return <Ejemplo />;
 };
 
 export default App;
