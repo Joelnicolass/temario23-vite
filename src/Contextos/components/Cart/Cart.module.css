@@ -1,0 +1,24 @@
+.cartContainer {
+  padding: 0 2rem;
+}
+
+.cart {
+  width: 40px;
+}
+
+.indicator {
+  position: absolute;
+  height: 1rem;
+  width: 1rem;
+  background-color: #f44336;
+  border-radius: 50%;
+  top: 0;
+  right: 25px;
+}
+
+.indicator p {
+  color: white;
+  text-align: center;
+  font-size: 0.8rem;
+  margin-top: -0.1rem;
+}
