@@ -1,11 +1,13 @@
 import React from "react";
-import Referencias from "./referencias/Referencias";
-import Routes from "./rutas/Routes";
-import ReferenciaDeElementos from "./referencias/ReferenciaDeElementos";
-import Ejemplo from "./referencias/Ejemplo";
+import ShoppingView from "./Contextos/views/ShoppingView";
+import ShopProvider from "./Contextos/contexts/ShopContext";
 
 const App = () => {
-  return <Ejemplo />;
+  return (
+    <ShopProvider>
+      <ShoppingView />
+    </ShopProvider>
+  );
 };
 
 export default App;
