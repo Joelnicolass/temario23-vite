@@ -1,5 +1,3 @@
-import React from "react";
-
 const usuarios = [
   {
     id: 1,
@@ -97,12 +95,11 @@ const eliminarUsuarioPorId = (id) => {
 };
 const actualizarUsuarioPorId = () => {};
 
-const MapFilterFind = () => {
-  return <div>MapFilterFind</div>;
-};
+
+
 
 console.table(estado)
 console.table(obetenerUsuarioPorApellido("Perez"))
 console.table(obtenerUsuarioPorId(2))
 console.table(eliminarUsuarioPorId(1))
-export default MapFilterFind;
+

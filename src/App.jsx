@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import TodoView from "./todo/view/TodoView";
-import { TodoContext } from "./todo/context/TodoContext";
-import CompletedTasks from "./todo/components/CompletedTasks/CompletedTasks";
+import React from "react";
+import ShoppingView from "./Contextos/views/ShoppingView";
+import ShopProvider from "./Contextos/contexts/ShopContext";
 
 const App = () => {
   const [completedTasks, setCompletedTasks] = useState(0);
@@ -15,16 +14,9 @@ const App = () => {
   };
 
   return (
-    <TodoContext.Provider
-      value={{
-        completedTasks,
-        incrementCompletedTasks,
-        decrementCompletedTasks,
-      }}
-    >
-      <TodoView />
-      <CompletedTasks />
-    </TodoContext.Provider>
+    <ShopProvider>
+      <ShoppingView />
+    </ShopProvider>
   );
 };
 
