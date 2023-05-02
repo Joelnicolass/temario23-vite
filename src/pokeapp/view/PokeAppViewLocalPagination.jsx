@@ -1,87 +1,79 @@
-import React, { useEffect, useState } from "react";
+import React, { createContext, useContext } from "react";
+import usePaginate from "../hooks/paginate/usePaginate";
+import useFetch from "../hooks/useFetch";
+import {
+  POKEMON_API_RESPONSE,
+  getAllPokemons,
+} from "../services/pokeApi.service";
+import PaginationButtons from "../components/PaginationButtons";
+import PokemonList from "../components/PokemonList";
+import SearchPokemon from "../components/SearchPokemon";
+import useFavorites from "../hooks/useFavorites";
+import BACKGROUND from "../../assets/background.jpg";
 
-const POKEAPI = {
-  URL_BASE: "https://pokeapi.co/api/v2/",
-  URL_POKEMON: "pokemon",
-  PARAMS: {
-    LIMIT: "limit=",
-    OFFSET: "offset=",
+const styles = {
+  container: {
+    width: "100vw",
+    height: "100vh",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundImage: `url(${BACKGROUND})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
   },
 };
 
-const getAllPokemons = async (limit = 10, offset = 0) => {
-  const url = `${POKEAPI.URL_BASE}${POKEAPI.URL_POKEMON}?${
-    POKEAPI.PARAMS.LIMIT
-  }${limit}&${POKEAPI.PARAMS.OFFSET}${offset * limit}`;
-
-  const response = await fetch(url);
-  const data = await response.json();
-
-  return data.results;
-};
+const PokeContext = createContext();
+const { Provider } = PokeContext;
+export const usePokeContext = () => useContext(PokeContext);
 
 const PokeAppViewLocalPagination = () => {
-  const [pokemons, setPokemons] = useState([]);
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const ELEMENTS_PER_PAGE = 10;
 
-  const [page, setPage] = useState(0);
+  const { favorites, handleFavorites } = useFavorites();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      try {
-        const response = await getAllPokemons(10, page);
-        setPokemons(response);
-      } catch (error) {
-        setError("Error al obtener los pokemons");
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  const { data: pokemonsResponse } = useFetch({
+    service: getAllPokemons,
+  });
 
-    fetchData();
-  }, [page]);
-
-  if (isLoading) {
-    return <h1>Cargando...</h1>;
-  }
-
-  const handleNextPage = () => {
-    setPage(page + 1);
-  };
-
-  const handlePrevPage = () => {
-    setPage(page - 1);
-  };
+  const {
+    maxPage,
+    result: pokemons,
+    search,
+    page,
+    handleNextPage,
+    handlePrevPage,
+    handleSearch,
+  } = usePaginate({
+    data: pokemonsResponse,
+    limitElements: ELEMENTS_PER_PAGE,
+    filterPropertyName: POKEMON_API_RESPONSE.NAME,
+  });
 
   return (
-    <div>
-      <h1>Pokes</h1>
+    <Provider
+      value={{
+        page,
+        search,
+        maxPage,
+        pokemons,
+        favorites,
+        handleSearch,
+        handleFavorites,
+        handlePrevPage,
+        handleNextPage,
+      }}
+    >
+      <div style={styles.container}>
+        <h1>Pokes</h1>
 
-      <div>
-        <h2>Buscar </h2>
-        <input />
+        <SearchPokemon />
+        <PokemonList />
+        <PaginationButtons />
       </div>
-
-      <div>
-        <h2>Lista</h2>
-
-        <div>
-          {error && <p>{error}</p>}
-          {pokemons.map((pokemon) => (
-            <div key={pokemon.name}>
-              <p>{pokemon.name}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div>
-        <button onClick={handlePrevPage}>-</button>
-        <span>{page + 1}</span>
-        <button onClick={handleNextPage}>+</button>
-      </div>
-    </div>
+    </Provider>
   );
 };
 
