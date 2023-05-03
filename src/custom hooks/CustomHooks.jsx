@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from "react";
 import useCounter from "./hooks/useCounter";
 import useFetch from "./hooks/useFetch";
-import { getAllPokemons, getAllUsers } from "./services/getAllUsers";
+import { getAllUsersService } from "./services/getAllUsers";
 
 const CustomHooks = () => {
   const { count, handleDecrement, handleIncrement } = useCounter({
-    initialCount: 0,
+    initialValue: 10,
   });
 
-  const { data, error, isLoading } = useFetch({
+  const {
+    data: users,
+    error,
+    isLoading,
+    refetch,
+  } = useFetch({
     initialState: [],
-    service: getAllUsers,
+    url: "https://jsonplaceholder.typicode.com/users",
+    service: getAllUsersService,
   });
 
   return (
@@ -20,16 +26,13 @@ const CustomHooks = () => {
       <button onClick={handleIncrement}>+</button>
 
       <div>
-        {isLoading && <p>Cargando...</p>}
-        {error && <p>{error}</p>}
-        {data.map((el) => (
-          <div key={el.name}>
-            <hr />
-            <p>{el.name}</p>
+        {users.map((user) => (
+          <div key={user.id}>
+            <h1>{user.name}</h1>
           </div>
         ))}
 
-        <button>HACER PETICION</button>
+        <button onClick={refetch}>Pedir Usuarios</button>
       </div>
     </div>
   );

@@ -1,20 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-// TODO: Hacer que se pueda elegir si se quiere hacer la peticion al inicio o hacerla mediante algun boton
-
-export const isFunction = (functionToCheck) =>
-  typeof functionToCheck === "function";
-
-const useFetch = ({
-  url = "",
-  errorMsg = "",
-  initialState = null,
-  service = null,
-  errorCallBack = (error) => {},
-  requestInMount = true,
-}) => {
+const useFetch = ({ initialState = null, url = "" }) => {
   const [data, setData] = useState(initialState);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const [refreshApi, setRefreshApi] = useState(false);
@@ -28,27 +16,16 @@ const useFetch = ({
       setIsLoading(true);
       setError(null);
       try {
-        if (!url && !service) {
-          throw new Error("No se ha especificado ninguna url o servicio");
-        }
-
-        if (service) {
-          const response = await service();
-          setData(response);
-          return;
-        }
-
         const response = await fetch(url);
-        if (!response.status.toString().startsWith("2")) {
-          throw new Error("Error en la llamada al servidor");
+
+        if (!response.ok) {
+          throw new Error("Error en la petición");
         }
 
-        const users = await response.json();
-        setData(users);
+        const data = await response.json();
+        setData(data);
       } catch (error) {
-        setError(errorMsg);
-
-        isFunction(errorCallBack) && errorCallBack(error);
+        setError("Error");
       } finally {
         setIsLoading(false);
       }
