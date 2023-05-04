@@ -1,13 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
 import "./index.css";
-import PokeAppView from "./pokeapp/view/PokeAppView";
-import PokeAppViewLocalPagination from "./pokeapp/view/PokeAppViewLocalPagination";
-import CustomHooks from "./custom hooks/CustomHooks";
+import CatsView from "./cats/views/CatsView";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <CustomHooks />
+    <CatsView />
   </React.StrictMode>
 );
