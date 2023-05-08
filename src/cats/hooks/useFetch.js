@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
-const useFetch = (url, { initialState = null } = {}) => {
-  const [data, setData] = useState(initialState);
+const useFetch = (url) => {
+  const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -11,17 +11,17 @@ const useFetch = (url, { initialState = null } = {}) => {
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
-      setError(null);
       try {
         const response = await fetch(url);
 
         if (!response.ok) {
-          throw new Error("Something went wrong!");
+          throw new Error("Algo salió mal");
         }
+
         const data = await response.json();
         setData(data);
-      } catch (error) {
-        setError("Something went wrong!");
+      } catch (err) {
+        setError("Algo salió mal");
       } finally {
         setIsLoading(false);
       }
@@ -32,8 +32,8 @@ const useFetch = (url, { initialState = null } = {}) => {
 
   return {
     data,
-    error,
     isLoading,
+    error,
     refetch,
   };
 };
