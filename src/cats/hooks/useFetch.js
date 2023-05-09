@@ -8,6 +8,10 @@ const useFetch = (url) => {
   const [refresh, setRefresh] = useState(false);
   const refetch = () => setRefresh(!refresh);
 
+  const setLocalData = (localData) => {
+    setData(localData);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
@@ -34,6 +38,7 @@ const useFetch = (url) => {
     data,
     isLoading,
     error,
+    setLocalData,
     refetch,
   };
 };
