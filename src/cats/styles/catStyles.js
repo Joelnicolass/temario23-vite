@@ -47,7 +47,8 @@ export const catsStyles = {
   favoriteContainer: {
     marginTop: "30px",
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
+    gap: "10px",
     alignItems: "center",
     padding: "10px",
     height: "80px",

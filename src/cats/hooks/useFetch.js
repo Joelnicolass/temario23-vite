@@ -8,6 +8,14 @@ const useFetch = (url, { initialState = null } = {}) => {
   const [refresh, setRefresh] = useState(false);
   const refetch = () => setRefresh(!refresh);
 
+  const showLocalImage = (urlImage) => {
+    setData([
+      {
+        url: urlImage,
+      },
+    ]);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
@@ -35,6 +43,7 @@ const useFetch = (url, { initialState = null } = {}) => {
     error,
     isLoading,
     refetch,
+    showLocalImage,
   };
 };
 
