@@ -5,6 +5,7 @@
   justify-content: center;
   height: 100vh;
   width: 100vw;
+  background: linear-gradient(to left, #062e5f 0%, #a21f24 100%);
 }
 
 .viewer {
@@ -17,12 +18,17 @@
   aspect-ratio: 1/1;
   height: 80%;
   border: 1px solid white;
+  border-radius: 29px;
+  box-shadow: 0 2px 0 -2px #f85959,
+  0 8px 0 -4px #39a2db,
+  0 12px 10px -3px #39a2db;
 }
 
 .viewer img {
   object-fit: fill;
   width: 100%;
   height: 100%;
+  border-radius: 29px;
 }
 
 .btnGroup {
@@ -31,7 +37,25 @@
   align-items: center;
   height: 15%;
   width: 100%;
-  background-color: green;
+  background-color: rgba(0, 128, 0, 0);
+  position: fixed;
+  top: 501px;
+  padding: 0 20px;
+}
+
+.btnGroup button {
+  transition: all .4s;
+  height: 59px;
+  width: 66px;
+}
+
+.btnGroup button:hover {
+  border-radius: 5px;
+  transform: translateY(-10px);
+  box-shadow: 0 7px 0 -2px #f85959,
+  0 15px 0 -4px #39a2db,
+  0 16px 10px -3px #39a2db;
+  text-shadow: 0 2px #ffffff
 }
 
 .favoriteContainer {
@@ -43,13 +67,16 @@
   height: 80px;
   width: 90%;
   border: 1px solid white;
-  overflow-y: hidden;
-  overflow-x: auto;
+ 
+  border-radius: 29px;
+  box-shadow: 0 2px 0 -2px #f85959,
+  0 8px 0 -4px #39a2db,
+  0 12px 10px -3px #39a2db;
 }
 
 .favoriteCard {
-  max-width: 50px;
-  max-height: 50px;
+  width: 50px;
+  height: 50px;
   aspect-ratio: 1/1;
 }
 
@@ -57,4 +84,21 @@
   object-fit: fill;
   width: 100%;
   height: 100%;
+  border-radius: 12px;
+  transition: all .4s;
+}
+
+.favoriteCard img:hover {
+  border-radius: 5px;
+  top: -20px;
+  padding: 0;
+  box-shadow: 0 7px 0 -2px #f85959,
+  0 15px 0 -4px #39a2db,
+  0 16px 10px -3px #39a2db;
+  width: 70px;
+  height: 70px;
+  z-index: 999;
+  object-fit: unset;
+  border-radius: 20px;
+  
 }
