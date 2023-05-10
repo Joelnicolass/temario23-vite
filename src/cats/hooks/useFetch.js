@@ -42,7 +42,6 @@ const useFetch = (url) => {
     data,
     isLoading,
     error,
-    setLocalData,
     refetch,
     showLocalImage,
   };
