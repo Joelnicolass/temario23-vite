@@ -1,17 +1,15 @@
 import React from "react";
-import styles from "../views/CatsView.module.css";
-import { useCatsContext } from "./Cats";
+import { catsStyles } from "../styles/catStyles";
 
-const FavoriteCard = ({ fav }) => {
-  const { showFavorite } = useCatsContext();
-
+const FavoriteCard = ({ showLocalImage, fav }) => {
   return (
-    <div className={styles.favoriteCard}>
+    <div style={catsStyles.favoriteCard}>
       <img
-        src={fav}
         onClick={() => {
-          showFavorite(fav);
+          showLocalImage(fav);
         }}
+        style={catsStyles.image}
+        src={fav}
       />
     </div>
   );

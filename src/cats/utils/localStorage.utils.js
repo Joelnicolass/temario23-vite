@@ -6,10 +6,14 @@ export const getFromLocalStorage = (key) =>
 
 export const removeFromLocalStorage = (key) => localStorage.removeItem(key);
 
-export const removeItemFromLocalStorage = (key, item) => {
-  const items = getFromLocalStorage(key);
-  const filteredItems = items.filter((i) => i !== item);
-  addToLocaStorage(key, filteredItems);
+export const getFromLocalStorage = (key) => {
+  const item = localStorage.getItem(key);
+  if (!item) return;
+  return JSON.parse(item);
+};
+
+export const removeFromLocalStorage = (key) => {
+  localStorage.removeItem(key);
 };
 
 export const clearLocalStorage = () => localStorage.clear();

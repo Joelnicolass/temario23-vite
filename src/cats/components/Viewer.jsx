@@ -1,27 +1,26 @@
 import React from "react";
-import styles from "../views/CatsView.module.css";
-import { useCatsContext } from "./Cats";
+import { catsStyles } from "../styles/catStyles";
 
-const Viewer = () => {
-  const { data, isLoading, refetch, handleFavorites } = useCatsContext();
-
+const Viewer = ({ handleAddToFavs, image, refetch, isLoading }) => {
   return (
-    <div className={styles.viewer}>
-      {isLoading ? (
-        <div className={styles.loading}>Loading...</div>
-      ) : (
-        <img alt="cat" src={data[0].url} />
-      )}
-
-      <div className={styles.btnGroup}>
+    <div style={catsStyles.viewerContainer}>
+      <div style={catsStyles.viewerTitle}>
+        <h1>TITULO</h1>
+      </div>
+      <div style={catsStyles.viewerImage}>
+        <img style={catsStyles.image} src={image} alt="cat" />
+      </div>
+      <div style={catsStyles.viewerButtons}>
         <button
           onClick={() => {
-            handleFavorites(data[0].url);
+            handleAddToFavs(image);
           }}
         >
           ❤️
         </button>
-        <button onClick={refetch}>🔜</button>
+        <button onClick={refetch} disabled={isLoading}>
+          🔜
+        </button>
       </div>
     </div>
   );

@@ -8,8 +8,12 @@ const useFetch = (url) => {
   const [refresh, setRefresh] = useState(false);
   const refetch = () => setRefresh(!refresh);
 
-  const setLocalData = (data) => {
-    setData(data);
+  const showLocalImage = (urlImage) => {
+    setData([
+      {
+        url: urlImage,
+      },
+    ]);
   };
 
   useEffect(() => {
@@ -40,6 +44,7 @@ const useFetch = (url) => {
     error,
     setLocalData,
     refetch,
+    showLocalImage,
   };
 };
 

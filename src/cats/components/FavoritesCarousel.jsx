@@ -1,15 +1,12 @@
 import React from "react";
-import styles from "../views/CatsView.module.css";
+import { catsStyles } from "../styles/catStyles";
 import FavoriteCard from "./FavoriteCard";
-import { useCatsContext } from "./Cats";
 
-const FavoritesCarousel = () => {
-  const { favs } = useCatsContext();
-
+const FavoritesCarousel = ({ favs, showLocalImage }) => {
   return (
-    <div className={styles.favoriteContainer}>
+    <div style={catsStyles.favoriteContainer}>
       {favs.map((fav) => (
-        <FavoriteCard fav={fav} key={fav} />
+        <FavoriteCard key={fav} fav={fav} showLocalImage={showLocalImage} />
       ))}
     </div>
   );
