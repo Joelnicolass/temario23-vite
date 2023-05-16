@@ -4,7 +4,10 @@ import Cats from "../components/Cats";
 const CatsView = () => {
   return (
     <>
-      <Cats />
+      <Cats>
+        <Cats.FavoritesCarousel />
+        <Cats.Viewer />
+      </Cats>
     </>
   );
 };

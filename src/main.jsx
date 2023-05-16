@@ -3,9 +3,10 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import CatsView from "./cats/views/CatsView";
 import PokeAppViewLocalPagination from "./pokeapp/view/PokeAppViewLocalPagination";
+import Reducer from "./useReducer/Reducer";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <CatsView />
+    <Reducer />
   </React.StrictMode>
 );

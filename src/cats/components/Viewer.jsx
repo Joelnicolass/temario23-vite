@@ -1,7 +1,10 @@
 import React from "react";
 import { catsStyles } from "../styles/catStyles";
+import { useCatsContext } from "./Cats";
 
-const Viewer = ({ handleAddToFavs, image, refetch, isLoading }) => {
+const Viewer = () => {
+  const { handleAddToFavs, image, refetch, isLoading } = useCatsContext();
+
   return (
     <div style={catsStyles.viewerContainer}>
       <div style={catsStyles.viewerTitle}>

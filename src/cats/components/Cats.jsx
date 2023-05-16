@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import React, { createContext, useContext } from "react";
 import Viewer from "./Viewer";
 import { catsStyles } from "../styles/catStyles";
 import FavoritesCarousel from "./FavoritesCarousel";
@@ -7,8 +7,9 @@ import useFavorites from "../hooks/useFavorites";
 
 const CatsContext = createContext();
 const { Provider } = CatsContext;
+export const useCatsContext = () => useContext(CatsContext);
 
-const Cats = () => {
+const Cats = ({ children }) => {
   const { data, isLoading, refetch, showLocalImage } = useFetch(
     "https://api.thecatapi.com/v1/images/search"
   );
@@ -16,25 +17,24 @@ const Cats = () => {
   const { favs, handleAddToFavs } = useFavorites();
 
   return (
-    <Provider>
+    <Provider
+      value={{
+        image: data && data[0].url,
+        isLoading,
+        refetch,
+        showLocalImage,
+        favs,
+        handleAddToFavs,
+      }}
+    >
       <div style={catsStyles.container}>
-        {isLoading ? (
-          <h1>Loading...</h1>
-        ) : (
-          <>
-            <Viewer
-              handleAddToFavs={handleAddToFavs}
-              image={data[0].url}
-              isLoading={isLoading}
-              refetch={refetch}
-            />
-
-            <FavoritesCarousel favs={favs} showLocalImage={showLocalImage} />
-          </>
-        )}
+        {isLoading ? <h1>Loading...</h1> : <>{children}</>}
       </div>
     </Provider>
   );
 };
+
+Cats.Viewer = Viewer;
+Cats.FavoritesCarousel = FavoritesCarousel;
 
 export default Cats;

@@ -1,8 +1,11 @@
 import React from "react";
 import { catsStyles } from "../styles/catStyles";
 import FavoriteCard from "./FavoriteCard";
+import { useCatsContext } from "./Cats";
 
-const FavoritesCarousel = ({ favs, showLocalImage }) => {
+const FavoritesCarousel = () => {
+  const { favs, showLocalImage } = useCatsContext();
+
   return (
     <div style={catsStyles.favoriteContainer}>
       {favs.map((fav) => (
