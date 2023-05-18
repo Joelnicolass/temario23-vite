@@ -9,13 +9,13 @@ import React, { useState, useReducer } from "react";
 
 // const reducer = (state, action) => state;
 
-const counterInitialState = {
+export const counterInitialState = {
   count: 0,
 };
 
 export const COUNTER_INCREMENT = "COUNTER_INCREMENT";
 
-const counterReducer = (state, action) => {
+export const counterReducer = (state, action) => {
   console.log(action);
 
   switch (action.type) {
