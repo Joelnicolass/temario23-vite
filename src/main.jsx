@@ -1,12 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import CatsView from "./cats/views/CatsView";
-import PokeAppViewLocalPagination from "./pokeapp/view/PokeAppViewLocalPagination";
-import Reducer from "./useReducer/Reducer";
+
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routes/AppRoutes";
+import { AuthProvider } from "./auth/context/AuthContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Reducer />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>
 );

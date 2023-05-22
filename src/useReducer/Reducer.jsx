@@ -14,6 +14,8 @@ const counterInitialState = {
 };
 
 export const COUNTER_INCREMENT = "COUNTER_INCREMENT";
+export const COUNTER_DECREMENT = "COUNTER_DECREMENT";
+export const COUNTER_INCREMENT_BY = "COUNTER_INCREMENT_BY";
 
 const counterReducer = (state, action) => {
   console.log(action);
@@ -23,6 +25,16 @@ const counterReducer = (state, action) => {
       return {
         ...state,
         count: state.count + 1,
+      };
+    case COUNTER_DECREMENT:
+      return {
+        ...state,
+        count: state.count - 1,
+      };
+    case COUNTER_INCREMENT_BY:
+      return {
+        ...state,
+        count: state.count + action.payload,
       };
 
     default:
@@ -39,14 +51,29 @@ const Reducer = () => {
     });
   };
 
-  const decrement = () => {};
+  const decrement = () => {
+    dispatch({
+      type: COUNTER_DECREMENT,
+    });
+  };
 
-  const incrementBy = () => {};
+  const incrementBy = () => {
+    dispatch({
+      type: COUNTER_INCREMENT_BY,
+      payload: 5,
+    });
+  };
 
   return (
     <div>
       <h1>{JSON.stringify(state)}</h1>
-      <button onClick={increment}>+</button>
+      <button
+        onClick={() => {
+          incrementBy(5);
+        }}
+      >
+        O
+      </button>
     </div>
   );
 };
